@@ -55,5 +55,5 @@ task dockerBuild(type: Exec) {
 
     println "Building docker image '$imageName'"
     executable 'docker'
-    args 'build', '-t', imageName, stageDir
+    args 'build', '--squash', '-t', imageName, stageDir
 }
