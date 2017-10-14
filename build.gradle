@@ -19,7 +19,7 @@ apply plugin: 'eclipse'
 apply plugin: 'org.springframework.boot'
 apply plugin: 'com.gorylenko.gradle-git-properties'
 
-version = '0.0.1-SNAPSHOT'
+version = '0.1'
 sourceCompatibility = 1.8
 
 repositories {
@@ -43,7 +43,7 @@ dependencies {
 
 task dockerBuild(type: Exec) {
     def repository = 'merusso/spring-boot-demo'
-    def tag = '0.4'
+    def tag = project.version + '-4'
     def imageName = "$repository:$tag"
 
     def stageDir = new File(project.buildDir, "docker")
