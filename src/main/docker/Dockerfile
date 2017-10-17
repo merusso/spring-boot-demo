@@ -4,7 +4,7 @@ EXPOSE 8080
 
 RUN useradd -s /bin/bash appuser
 
-ADD spring-boot-demo.jar app.jar
+COPY spring-boot-demo.jar app.jar
 RUN chown appuser:appuser app.jar
 
 USER appuser
