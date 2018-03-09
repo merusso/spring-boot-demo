@@ -8,5 +8,4 @@ COPY spring-boot-demo.jar app.jar
 RUN chown appuser:appuser app.jar
 
 USER appuser
-ENV JAVA_OPTS=""
-ENTRYPOINT exec java $JAVA_OPTS -Djava.security.egd=file:/dev/./urandom -jar /app.jar
+CMD ["java", "-Djava.security.egd=file:/dev/./urandom", "-jar", "/app.jar"]
