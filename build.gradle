@@ -41,19 +41,23 @@ dependencies {
     testCompile 'org.springframework.boot:spring-boot-starter-test'
 }
 
-task dockerBuild(type: Exec) {
+task dockerBuild {
     def repository = 'merusso/spring-boot-demo'
-    def tag = project.version + '-4'
+    def tag = project.version + '-5'
     def imageName = "$repository:$tag"
-
+    
     def stageDir = new File(project.buildDir, "docker")
-    copy {
-        from 'src/main/docker/Dockerfile'
-        from "$buildDir/libs"
-        into stageDir
+    
+    doLast {
+        copy {
+            from 'src/main/docker/Dockerfile'
+            from "$buildDir/libs"
+            into stageDir
+        }
+        exec {
+            println "Building docker image '$imageName'"
+            executable 'docker'
+            args 'build', '--squash', '-t', imageName, stageDir
+        }
     }
-
-    println "Building docker image '$imageName'"
-    executable 'docker'
-    args 'build', '--squash', '-t', imageName, stageDir
 }
