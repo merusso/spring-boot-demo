@@ -13,9 +13,7 @@ repositories {
     mavenCentral()
 }
 
-bootJar {
-    version = null
-}
+bootJar.getArchiveVersion().set('')
 
 springBoot  {
     buildInfo()
