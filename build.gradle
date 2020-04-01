@@ -25,7 +25,6 @@ dependencies {
     compile 'org.springframework.boot:spring-boot-starter-actuator'
     compile 'org.springframework.boot:spring-boot-starter-web'
     runtime 'org.springframework.boot:spring-boot-devtools'
-//    runtime 'org.springframework.boot:spring-boot-properties-migrator'
     testCompile 'org.springframework.boot:spring-boot-starter-test'
 }
 
