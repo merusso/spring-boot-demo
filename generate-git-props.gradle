@@ -1,0 +1,16 @@
+/*
+ * This task outputs git.properties to resources directory.
+ * Inspiration: https://github.com/n0mer/gradle-git-properties
+ */
+task generateGitProperties(type: WriteProperties) {
+    comment 'Generated git properties [task generateGitProperties].'
+    outputFile "$buildDir/resources/main/git.properties"
+
+    property 'git.commit.id', System.env.'GIT_COMMIT' ?: 'UNKNOWN'
+    property 'git.branch', System.env.'GIT_BRANCH' ?: 'UNKNOWN'
+
+    doFirst {
+        logger.info 'Writing git properties to resources directory'
+    }
+}
+classes.dependsOn(generateGitProperties)

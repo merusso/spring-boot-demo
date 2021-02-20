@@ -4,6 +4,9 @@ plugins {
     id 'java'
 }
 
+apply from: './generate-git-props.gradle'
+apply from: './resolve-deps.gradle'
+
 group = 'com.example'
 version = '0.4'
 sourceCompatibility = '11'

@@ -1,0 +1,23 @@
+/*
+ * This gradle config adds a new "resolveDependencies" task that is designed to
+ * download dependencies independently from running another task, such as build.
+ *
+ * Inspiration: https://gist.github.com/matthiasbalke/3c9ecccbea1d460ee4c3fbc5843ede4a
+ */
+
+task resolveDependencies {
+    group = 'build'
+    description = 'Resolves dependencies, useful for container builds.'
+    doLast {
+        project.rootProject.allprojects.each { subproject ->
+            resolveConfigurations subproject.buildscript.configurations
+            resolveConfigurations subproject.configurations
+        }
+    }
+}
+
+void resolveConfigurations(configurations) {
+    configurations
+        .findAll { it.canBeResolved }
+        .each { it.resolve() }
+}
