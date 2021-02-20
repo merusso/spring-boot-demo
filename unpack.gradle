@@ -1,0 +1,16 @@
+/*
+ * This task unpacks the bootJar into a set of directories:
+ * build/unpacked/
+ * ├-- BOOT-INF/
+ * |  ├-- libs/
+ * |  └-- classes/
+ * |-- META-INF/
+ * └-- org/springframework/boot/loader/
+ */
+task unpack(type: Copy, dependsOn: 'build') {
+    def zipFile = file(bootJar.archiveFile)
+    def outputDir = file("$buildDir/unpacked")
+
+    from zipTree(zipFile)
+    into outputDir
+}

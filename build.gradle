@@ -6,6 +6,7 @@ plugins {
 
 apply from: './generate-git-props.gradle'
 apply from: './resolve-deps.gradle'
+apply from: './unpack.gradle'
 
 group = 'com.example'
 version = '0.4'
